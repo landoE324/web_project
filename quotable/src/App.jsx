@@ -1,26 +1,27 @@
 import React from "react";
+import "./style.css";
 
 
-function App() {
+export default function App() {
 return (
-<div className="min-h-screen bg-[#f5f0e6] flex flex-col items-start p-8">
-{/* Nav Bar */}
-<nav className="w-full flex items-center justify-between">
-<div className="text-xl font-semibold text-gray-800">My Nav</div>
-<button className="sm:hidden p-2 border rounded-lg">Menu</button>
-</nav>
-{/* Search Bar Container */}
-<div className="w-full flex justify-center mt-6">
-<input$1 className="w-full sm:w-1/2 p-3 rounded-2xl shadow-md border border-gray-300 focus:outline-none focus:ring-2" />
+<div className="app-container">
+{/* Dropdown Menu (Top Left) */}
+<div className="nav-dropdown">
+<details>
+<summary className="menu-title">Menu</summary>
+<ul className="menu-list">
+<li><a href="#">Home</a></li>
+<li><a href="#">About</a></li>
+<li><a href="#">Folders</a></li>
+</ul>
+</details>
 </div>
 
 
-{/* Content Placeholder */}
-<div className="mt-10 text-xl text-gray-700">
-Welcome to the basic React webpage!
+{/* Search Bar (Top Middle) */}
+<div className="search-bar">
+<input type="text" placeholder="Search..." />
 </div>
 </div>
 );
 }
-
-export default App

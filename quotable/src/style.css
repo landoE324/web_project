@@ -1,0 +1,59 @@
+.app-container {
+width: 100vw;
+height: 100vh;
+background-color: #f2f2f2;
+position: relative;
+padding: 20px;
+}
+
+
+.nav-dropdown {
+position: absolute;
+top: 20px;
+left: 20px;
+}
+
+
+.menu-title {
+font-size: 18px;
+font-weight: 600;
+cursor: pointer;
+}
+
+
+.menu-list {
+list-style: none;
+padding: 10px 0;
+margin: 0;
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+
+
+.menu-list a {
+text-decoration: none;
+color: black;
+}
+
+
+.menu-list a:hover {
+text-decoration: underline;
+}
+
+
+.search-bar {
+position: absolute;
+top: 20px;
+left: 50%;
+transform: translateX(-50%);
+}
+
+
+.search-bar input {
+width: 350px;
+padding: 10px;
+border-radius: 10px;
+border: 1px solid #ccc;
+font-size: 16px;
+}
