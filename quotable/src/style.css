@@ -1,59 +1,88 @@
 .app-container {
-width: 100vw;
-height: 100vh;
-background-color: #f2f2f2;
-position: relative;
-padding: 20px;
+  width: 100vw;
+  height: 80px;
+
+  /* This keeps everything at the TOP — important! */
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;   /* centers the search bar horizontally */
+  align-items: center;       /* aligns items vertically inside ONLY this bar */
+  
 }
 
-
-.nav-dropdown {
-position: absolute;
-top: 20px;
-left: 20px;
-}
-
+/* -------- TOP LEFT MENU -------- */
 
 .menu-title {
-font-size: 18px;
-font-weight: 600;
-cursor: pointer;
+  color: rgba(23, 60, 87);
+  font-size: 40px;
 }
 
+.nav-dropdown {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
+
+summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
 
 .menu-list {
-list-style: none;
-padding: 10px 0;
-margin: 0;
-display: flex;
-flex-direction: column;
-gap: 8px;
+  margin-top: 8px;
+  padding: 0;
+  list-style: none;
+  background: #f2f2f2;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #ccc;
 }
 
-
-.menu-list a {
-text-decoration: none;
-color: black;
+.menu-list li a {
+  display: block;
+  padding: 10px 14px;
+  text-decoration: none;
+  color: black;
 }
 
-
-.menu-list a:hover {
-text-decoration: underline;
+.menu-list li a:hover {
+  background: #e0e0e0;
 }
 
+/* -------- TOP RIGHT LOGO -------- */
 
-.search-bar {
-position: absolute;
-top: 20px;
-left: 50%;
-transform: translateX(-50%);
+.logo-container {
+  position: absolute;
+  top: 15px;
+  right: 15px;
 }
 
+.logo-img {
+  width: 120px;
+  height: auto;
+  cursor: pointer;
+}
+
+/* -------- SEARCH BAR (CENTER) -------- */
 
 .search-bar input {
-width: 350px;
-padding: 10px;
-border-radius: 10px;
-border: 1px solid #ccc;
-font-size: 16px;
+  width: 280px;
+  padding: 10px 14px;
+  font-size: 15px;
+
+  border-radius: 20px;
+  border: 1px solid #ccc;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color: rgba(245, 238, 224);
 }

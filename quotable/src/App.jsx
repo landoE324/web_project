@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./style.css";
 
 
@@ -15,6 +16,14 @@ return (
 <li><a href="#">Folders</a></li>
 </ul>
 </details>
+</div>
+
+<div className="logo-container">
+<img
+    src = "/logo.png"
+    alt = "logo"
+    className = "logo-img"
+/>
 </div>
 
 
