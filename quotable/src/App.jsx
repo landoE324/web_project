@@ -27,6 +27,31 @@ return (
 </div>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {/* Search Bar (Top Middle) */}
 <div className="search-bar">
 <input type="text" placeholder="Search..." />
