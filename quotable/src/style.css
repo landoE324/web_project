@@ -1,17 +1,13 @@
 .app-container {
   width: 100vw;
-  height: 80px;
-
-  /* This keeps everything at the TOP — important! */
-  position: fixed;
-  top: 0;
-  left: 0;
-
+  min-height: 100vh;
   display: flex;
-  justify-content: center;   /* centers the search bar horizontally */
-  align-items: center;       /* aligns items vertically inside ONLY this bar */
-  
+  flex-direction: column;
+  padding-top: 200px;   /* NEW — pushes cards below top bar */
+  background-color: rgba(245, 238, 224);
+  position: relative;   /* CHANGED from fixed */
 }
+
 
 /* -------- TOP LEFT MENU -------- */
 
@@ -21,9 +17,10 @@
 }
 
 .nav-dropdown {
-  position: absolute;
+  position: fixed;
   top: 15px;
   left: 15px;
+  z-index: 10;
 }
 
 summary {
@@ -59,9 +56,10 @@ summary::-webkit-details-marker {
 /* -------- TOP RIGHT LOGO -------- */
 
 .logo-container {
-  position: absolute;
+  position: fixed;
   top: 15px;
   right: 15px;
+  z-index: 10;
 }
 
 .logo-img {
@@ -79,6 +77,11 @@ summary::-webkit-details-marker {
 
   border-radius: 20px;
   border: 1px solid #ccc;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9;
 }
 
 body, html {
@@ -86,3 +89,71 @@ body, html {
   padding: 0;
   background-color: rgba(245, 238, 224);
 }
+
+/* -------- CARDS -------- */
+
+
+.card{
+  border: 1px solid  rgba(23, 60, 87);
+  border-radius: 30px;
+  box-shadow: 5px 5px 5px rgba(70, 69, 69, 0.182);
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+  max-width: 140px;
+  max-height: 140px;
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px); /* lifts the card */
+  box-shadow: 8px 8px 15px rgba(70, 69, 69, 0.3); /* stronger shadow */
+}
+
+.card .card-image{
+  width: 90%;
+  height: auto;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.card .card-title{
+  font-family: Arial, sans-serif;
+  margin: 0;
+  color:  rgba(23, 60, 87);
+  font-size: 14px;
+  padding-top: 60px;
+}
+
+.category-container{
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 30px;
+}
+
+.recent-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 20px;
+  gap: 30px;
+}
+
+.section-label{
+    color:  rgba(23, 60, 87);
+    margin-left: 20px;
+    border-left: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+}
+
+.Recent {
+  margin-top: 100px;
+}
+
+

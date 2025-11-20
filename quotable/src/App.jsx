@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
+import Card from './Card.jsx'
 
+{/*assets*/}
+import picture from './assets/placeholder.png'
 
 export default function App() {
 return (
@@ -24,37 +27,34 @@ return (
     alt = "logo"
     className = "logo-img"
 />
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 {/* Search Bar (Top Middle) */}
 <div className="search-bar">
 <input type="text" placeholder="Search..." />
+</div>
+</div>
+
+
+{/* Cards */}
+<div className = "recommended">
+    <h2 className = "section-label">RECOMMENDED</h2>
+<div className = "category-container">
+<Card image = {picture}></Card>
+<Card image = {picture}></Card>
+<Card image = {picture}></Card>
+<Card image = {picture}></Card>
+</div>
+</div>
+
+<div className = "Recent">
+    <h2 className = "section-label">RECENT</h2>
+<div className = "recent-container">
+<Card image = {picture}></Card>
+<Card image = {picture}></Card>
+<Card image = {picture}></Card>
+<Card image = {picture}></Card>    
+</div>
 </div>
 </div>
 );
