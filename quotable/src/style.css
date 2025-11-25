@@ -2,7 +2,7 @@
   width: 100vw;
   min-height: 100vh;
   display: flex;
-  flex-direction: columnn;
+  flex-direction: column;
   background-color: rgba(245, 238, 224);
   position: relative;   /* CHANGED from fixed */
 }
@@ -159,8 +159,10 @@ body, html {
     border-bottom: 2px solid #ccc;
 }
 
-.Recent {
-  margin-top: 100px;
+
+.recommended, .recent {
+  width: 100%;
+  margin-top: 40px;
 }
 
 

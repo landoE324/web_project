@@ -4,25 +4,28 @@ import Card from "./Card.jsx";
 import picture from "./assets/placeholder.png";
 
 export default function Home() {
+  const recommendedItems = [picture, picture, picture, picture];
+  const recentItems = [picture, picture, picture, picture];
+
   return (
     <Layout>
+      {/* Recommended Section */}
       <div className="recommended">
         <h2 className="section-label">RECOMMENDED</h2>
         <div className="category-container">
-          <Card image={picture} />
-          <Card image={picture} />
-          <Card image={picture} />
-          <Card image={picture} />
+          {recommendedItems.map((img, index) => (
+            <Card key={index} image={img} />
+          ))}
         </div>
       </div>
 
+      {/* Recent Section */}
       <div className="recent">
         <h2 className="section-label">RECENT</h2>
         <div className="recent-container">
-          <Card image={picture} />
-          <Card image={picture} />
-          <Card image={picture} />
-          <Card image={picture} />
+          {recentItems.map((img, index) => (
+            <Card key={index} image={img} />
+          ))}
         </div>
       </div>
     </Layout>
