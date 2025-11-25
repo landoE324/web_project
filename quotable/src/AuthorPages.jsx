@@ -3,6 +3,7 @@ import "./QuotesStyle.css";
 import Card from "./Card.jsx";
 
 import picture from "./assets/placeholder.png";
+import arrow from "./assets/arrow.jpg"
 
 export default function QuotesPage() {
   return (
@@ -34,8 +35,19 @@ export default function QuotesPage() {
       </div>
 
       {/* ---- SINGLE CENTERED CARD ---- */}
-      <div className="category-container">
+
+      <div className = "card-wrapper">
+
+      <button className = "arrow left">
+        <img src = {arrow} />
+      </button>
+
+      <div>
           <Card image={picture} title="Author Name" />
+      </div>
+
+      <button className = "arrow right">test2</button>
+
       </div>
     </div>
   );

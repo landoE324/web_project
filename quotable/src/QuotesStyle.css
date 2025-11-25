@@ -94,13 +94,12 @@ body, html {
 
 
 .card{
-  width: 400px;                 /* controls total card width */
+  width: 600px;                 /* controls total card width */
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 10px;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .square{
@@ -114,12 +113,14 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.card:hover {
+.square:hover {
   transform: translateY(-5px); /* lifts the card */
   box-shadow: 8px 8px 15px rgba(70, 69, 69, 0.3); /* stronger shadow */
 }
+
 
 .card .card-image{
   width: 90%;
@@ -164,3 +165,34 @@ body, html {
 .Recent {
   margin-top: 100px;
 }
+
+/* -------- ARROWS -------- */
+
+.card-wrapper {
+  display: flex;
+  align-items: center;   /* vertically centers arrows to the cards */
+  justify-content: center;
+  gap: 20px;
+}
+
+.arrow {
+  background: none;
+  border: none;
+  font-size: 40px;
+  color: rgba(23, 60, 87);
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: transform 0.2s ease;
+}
+
+.arrow:hover {
+  transform: scale(1.2);
+}
+
+/* TEMP — use for 1 second to spot the problem, then remove */
+.card-wrapper { outline: 2px dashed blue !important; }
+.category-container { outline: 2px dashed red !important; }
+.app-container { outline: 2px dashed orange !important; }
+.card { outline: 2px dashed green !important; }
+.arrow { outline: 2px dashed purple !important; }
+
