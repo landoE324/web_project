@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./QuotesStyle.css";
+import styles from "./QuotesStyle.module.css";
 import Card from "./Card.jsx";
 
 import picture from "./assets/placeholder.png";
@@ -20,12 +20,12 @@ export default function QuotesPage() {
   };
   
   return (
-    <div className="app-container">
+    <div className= {styles.appContainer}>
       {/* Dropdown Menu (Top Left) */}
-      <div className="nav-dropdown">
+      <div className= {styles.navDropdown}>
         <details>
-          <summary className="menu-title">Menu</summary>
-          <ul className="menu-list">
+          <summary className= {styles.menuTitle}>Menu</summary>
+          <ul className= {styles.menuList}>
             <li><a href="#">Home</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Folders</a></li>
@@ -34,39 +34,40 @@ export default function QuotesPage() {
       </div>
 
       {/* Top Right Logo */}
-      <div className="logo-container">
+      <div className= {styles.logoContainer}>
         <img
           src="/logo.png"
           alt="logo"
-          className="logo-img"
+          className= {styles.logoImg}
         />
       </div>
 
       {/* Search Bar (Top Middle) */}
-      <div className="search-bar">
+      <div className={styles.searchBar}>
         <input type="text" placeholder="Search..." />
       </div>
 
       {/* ---- SINGLE CENTERED CARD ---- */}
 
-      <div className = "card-wrapper">
+      <div className = {styles.cardWrapper}>
 
-      <button className = "arrow left" onClick={handlePrev}>
+      <button className = {styles.arrow} onClick={handlePrev}>
         <img src = {arrow} style = {{transform: "scaleX(-1)"}}/>
       </button>
 
-      <div className={`card-container ${animating ? "shuffle" : ""}`}>
+      <div className={`${styles.cardContainer} ${animating ? styles.shuffle : ""}`}>
           
           <Card 
           image={picture} 
           type = "Quote"
           text = '"A journey of a thousand miles begins with a single step."'
           title = "Lao Tzu"
+          size = "large"
           />
 
       </div>
 
-      <button className = "arrow right" onClick={handleNext}>
+      <button className = {styles.arrow} onClick={handleNext}>
         <img src = {arrow} />
       </button>
 

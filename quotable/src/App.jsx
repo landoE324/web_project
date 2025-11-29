@@ -1,61 +1,61 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./HomeStyle.css";
-import Card from './Card.jsx'
+import styles from "./HomeStyle.module.css"; // <-- module import
+import Card from './Card.jsx';
 
-{/*assets*/}
-import picture from './assets/placeholder.png'
+/* assets */
+import picture from './assets/placeholder.png';
 
 export default function App() {
-return (
-<div className="app-container">
-{/* Dropdown Menu (Top Left) */}
-<div className="nav-dropdown">
-<details>
-<summary className="menu-title">Menu</summary>
-<ul className="menu-list">
-<li><a href="#">Home</a></li>
-<li><a href="#">About</a></li>
-<li><a href="#">Folders</a></li>
-</ul>
-</details>
-</div>
+  return (
+    <div className={styles.appContainer}>
+      {/* Dropdown Menu (Top Left) */}
+      <div className={styles.navDropdown}>
+        <details>
+          <summary className={styles.menuTitle}>Menu</summary>
+          <ul className={styles.menuList}>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Folders</a></li>
+          </ul>
+        </details>
+      </div>
 
-<div className="logo-container">
-<img
-    src = "/logo.png"
-    alt = "logo"
-    className = "logo-img"
-/>
+      {/* Top Right Logo */}
+      <div className={styles.logoContainer}>
+        <img
+          src="/logo.png"
+          alt="logo"
+          className={styles.logoImg}
+        />
 
+        {/* Search Bar (Top Middle) */}
+        <div className={styles.searchBar}>
+          <input type="text" placeholder="Search..." />
+        </div>
+      </div>
 
-{/* Search Bar (Top Middle) */}
-<div className="search-bar">
-<input type="text" placeholder="Search..." />
-</div>
-</div>
+      {/* RECOMMENDED CARDS */}
+      <div className={styles.recommended}>
+        <h2 className={styles.sectionLabel}>RECOMMENDED</h2>
+        <div className={styles.categoryContainer}>
+          <Card image={picture} text="Placeholder" type="image" title="Placeholder" size = "small"/>
+          <Card image={picture} text="Placeholder" type="image" title="Placeholder" size = "small"/>
+          <Card image={picture} text="Placeholder" type="image" title="Placeholder" size = "small"/>
+          <Card image={picture} text="Placeholder" type="image" title="Placeholder" size = "small"/>
+        </div>
+      </div>
 
-
-{/* Cards */}
-<div className = "recommended">
-    <h2 className = "section-label">RECOMMENDED</h2>
-<div className = "category-container">
-<Card image = {picture}></Card>
-<Card image = {picture}></Card>
-<Card image = {picture}></Card>
-<Card image = {picture}></Card>
-</div>
-</div>
-
-<div className = "Recent">
-    <h2 className = "section-label">RECENT</h2>
-<div className = "recent-container">
-<Card image = {picture}></Card>
-<Card image = {picture}></Card>
-<Card image = {picture}></Card>
-<Card image = {picture}></Card>    
-</div>
-</div>
-</div>
-);
+      {/* RECENT CARDS */}
+      <div className={styles.Recent}>
+        <h2 className={styles.sectionLabel}>RECENT</h2>
+        <div className={styles.recentContainer}>
+          <Card image={picture} text="Placeholder" type="image" title="Placeholder" size = "small"/>
+          <Card image={picture} text="Placeholder" type="image" title="Placeholder" size = "small"/>
+          <Card image={picture} text="Placeholder" type="image" title="Placeholder" size = "small"/>
+          <Card image={picture} text="Placeholder" type="image" title="Placeholder" size = "small"/>
+        </div>
+      </div>
+    </div>
+  );
 }
