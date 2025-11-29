@@ -7,6 +7,7 @@ import Card from './Card.jsx';
 import picture from './assets/placeholder.png';
 
 export default function App() {
+  
   return (
     <div className={styles.appContainer}>
       {/* Dropdown Menu (Top Left) */}

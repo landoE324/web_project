@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./QuotesStyle.module.css";
 import Card from "./Card.jsx";
-
+import axios from "axios";
 import picture from "./assets/placeholder.png";
 import arrow from "./assets/arrow.png"
 
@@ -19,6 +19,17 @@ export default function QuotesPage() {
     setTimeout(() => setAnimating(false), 300);
   };
   
+  const [quote, setQuote] = useState("");
+
+  useEffect(() => {
+    fetch("https://api.quotable.io/random")
+      .then(res => res.json())
+      .then(data => {
+        console.log(data.author);
+      });
+
+  }, []);
+
   return (
     <div className= {styles.appContainer}>
       {/* Dropdown Menu (Top Left) */}
