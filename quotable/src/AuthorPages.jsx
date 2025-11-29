@@ -4,29 +4,27 @@ import Card from "./Card.jsx";
 import axios from "axios";
 import picture from "./assets/placeholder.png";
 import arrow from "./assets/arrow.png"
+import { useContext } from "react";
+import { CurrentQuotesContext } from "./CurrentQuotesContext";
 
 export default function QuotesPage() {
-  
+
+  const { currentArray, currentIndex, setCurrentIndex, currentQuote } = useContext(CurrentQuotesContext);
   const [animating, setAnimating] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [quotes, setQuotes] = useState([]);
-
-  const contentArray = quotes.length > 0 ? [quotes[0], quotes[1], quotes[3]] : [];
-
-  const currentQuote = contentArray.length > 0 ? contentArray[currentIndex] : null;
 
   const handleNext = () => {
     setAnimating(true);
     setTimeout(() => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + contentArray.length) % contentArray.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % currentArray.length);
     setAnimating(false);
-  }, 300);
+    }, 300);
   };
 
   const handlePrev = () => {
     setAnimating(true);
     setTimeout(() => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + contentArray.length) % contentArray.length);
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + currentArray.length) % currentArray.length);
     setAnimating(false);
   }, 300);
   };

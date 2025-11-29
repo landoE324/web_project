@@ -5,11 +5,16 @@ import smallStyles from "./HomeStyle.module.css";
 function Card(props) {
 
   const styles = props.size === 'large' ? largeStyles : smallStyles;
+  const folder = props.name === ''
+
+  const openContent = () => {
+    
+  };
 
   return (
     <div 
       className={styles.card} 
-      onClick={() => alert("Card clicked!")}
+      onClick={() => openContent(folder))}
     >
       <div className={styles.square}>
         {props.type === "image" ? (
