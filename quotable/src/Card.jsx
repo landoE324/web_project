@@ -7,9 +7,19 @@ function Card(prop)
         onClick={() => alert("Card clicked!")}
         >
             <div className = "square">
-            <img className= "card-image" src= {prop.image} alt="Category"></img>
+
+            {
+            prop.type === "image" ? 
+            (
+          <img src={prop.image} className="card-image" />
+            ) : 
+             (
+          <p className="card-text">{prop.text}</p>
+             )
+             }
+
             </div>
-            <h2 className = "card-title">Placeholder</h2>
+            <h2 className = "card-title">{prop.title}</h2>
         </div>
     );
 }
