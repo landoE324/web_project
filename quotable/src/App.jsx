@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./HomeStyle.module.css"; // <-- module import
 import Card from './Card.jsx';
+import { useNavigate } from "react-router-dom";
 
 /* assets */
 import picture from './assets/placeholder.png';
@@ -11,9 +12,26 @@ import shakespeare from './assets/shakespeare.jpg';
 import twain from './assets/twain.jpg';
 import { CurrentQuotesContext } from "./CurrentQuotesContext.jsx";
 
+
 export default function App() {
 
-  const {loading} = useContext(CurrentQuotesContext);
+  const navigate = useNavigate();
+
+  const {allQuotes, loading, setCurrentArray, setCurrentIndex} = useContext(CurrentQuotesContext);
+
+  console.log("allQuotes:", allQuotes);
+
+  const [query, setQuery] = useState("");
+
+  // Filter quotes as user types
+  const results =
+  query.length > 0 && Array.isArray(allQuotes)
+    ? allQuotes.filter(q =>
+        (q.text || q.quote || "").toLowerCase().includes(query.toLowerCase()) ||
+        (q.author || "").toLowerCase().includes(query.toLowerCase())
+      )
+    : [];
+
   
   return (
     <div className={styles.appContainer}>
@@ -22,9 +40,9 @@ export default function App() {
         <details>
           <summary className={styles.menuTitle}>Menu</summary>
           <ul className={styles.menuList}>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Folders</a></li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/">About</Link></li>
+            <li><Link to="/">Folders</Link></li>
           </ul>
         </details>
       </div>
@@ -35,12 +53,55 @@ export default function App() {
           src="/logo.png"
           alt="logo"
           className={styles.logoImg}
+          onClick={() => navigate("/")} // your action here
+          style={{ cursor: "pointer" }} // shows hand cursor on hover
         />
 
         {/* Search Bar (Top Middle) */}
         <div className={styles.searchBar}>
-          <input type="text" placeholder="Search..." />
+          <input
+            type="text"
+            placeholder="Search quotes or authors..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
         </div>
+      
+
+      {query.length > 0 && (
+        <div className={styles.searchResults}>
+          {results.length === 0 ? (
+            <div className={styles.noResults}>No results found</div>
+          ) : (
+            results.slice(0, 8).map((q, i) => (
+              <div
+                key={i}
+                className={styles.searchItem}
+                onClick={() => {
+                  const authorQuotes = allQuotes
+                    .filter(x => x.author === q.author)
+                    .map(x => ({
+                      quote: x.text || x.quote,
+                      author: x.author
+                    }));
+
+                  const index = authorQuotes.findIndex(
+                    item => item.quote === (q.text || q.quote)
+                  );
+
+                  setCurrentArray(authorQuotes);
+                  setCurrentIndex(index >= 0 ? index : 0);
+
+                  navigate("/quotes");
+                  setQuery("");
+                }}
+              >
+                <strong>{q.author}</strong> — {q.text || q.quote}
+              </div>
+            ))
+          )}
+        </div>
+      )}
       </div>
 
       {/* RECOMMENDED CARDS */}

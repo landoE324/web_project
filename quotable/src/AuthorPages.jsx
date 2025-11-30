@@ -11,7 +11,6 @@ export default function QuotesPage() {
 
   const { currentArray, currentIndex, setCurrentIndex, currentQuote } = useContext(CurrentQuotesContext);
   const [animating, setAnimating] = useState(false);
-  const [quotes, setQuotes] = useState([]);
 
   const handleNext = () => {
     setAnimating(true);

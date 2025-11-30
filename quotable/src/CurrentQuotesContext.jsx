@@ -68,7 +68,8 @@ export function CurrentQuotesProvider({ children }) {
         currentIndex,
         setCurrentIndex,
         currentQuote,
-        famousFolders
+        famousFolders,
+        allQuotes
       }}
     >
       {children}

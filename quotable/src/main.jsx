@@ -8,14 +8,14 @@ import { CurrentQuotesProvider } from "./CurrentQuotesContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <CurrentQuotesProvider>
-
   <BrowserRouter>
-    <Routes>
-      <Route path= "/" element={<App />} />
-      <Route path= "/quotes" element={<AuthorPages />} />
-    </Routes>
+    <CurrentQuotesProvider>
+      <Routes>
+        <Route path= "/" element={<App />} />
+        <Route path= "/quotes" element={<AuthorPages />} />
+      </Routes> 
+    </CurrentQuotesProvider>
   </BrowserRouter>
 
-  </CurrentQuotesProvider>
+ 
 );
