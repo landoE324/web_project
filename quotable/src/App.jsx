@@ -45,7 +45,7 @@ export default function App() {
           <ul className={styles.menuList}>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/">About</Link></li>
-            <li><Link to="/">Folders</Link></li>
+            <li><Link to="/folders">Folders</Link></li>
           </ul>
         </details>
       </div>

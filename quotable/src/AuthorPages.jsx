@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./QuotesStyle.module.css";
 import Card from "./Card.jsx";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import picture from "./assets/placeholder.png";
 import arrow from "./assets/arrow.png"
@@ -34,10 +35,10 @@ export default function QuotesPage() {
       <div className= {styles.navDropdown}>
         <details>
           <summary className= {styles.menuTitle}>Menu</summary>
-          <ul className= {styles.menuList}>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Folders</a></li>
+          <ul className={styles.menuList}>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/">About</Link></li>
+            <li><Link to="/folders">Folders</Link></li>
           </ul>
         </details>
       </div>
