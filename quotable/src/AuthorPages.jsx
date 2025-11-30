@@ -29,25 +29,6 @@ export default function QuotesPage() {
   }, 300);
   };
   
-  useEffect(() => {
-    async function loadQuotes() {
-      try {
-        const res = await fetch("https://echoes.soferity.com/api/quotes");
-        const json = await res.json();
-        setQuotes(json.data); // json.data is the array of quotes
-      } catch (err) {
-        console.error("Error fetching quotes:", err);
-      }
-    }
-
-    loadQuotes(); // call the async function
-  }, []); // empty dependency array = run ONLY once when component mounts
-
-  useEffect(() => {
-  console.log("Quotes updated:", quotes[1]);
-}, [quotes]);
-
-
   return (
     <div className= {styles.appContainer}>
       {/* Dropdown Menu (Top Left) */}
@@ -86,12 +67,10 @@ export default function QuotesPage() {
 
       <div className={`${styles.cardContainer} ${animating ? styles.shuffle : ""}`}>
           
-          {currentQuote ? (
+          {currentArray && currentArray.length > 0 ? (
               <Card
-                image={picture}
+                image = {picture}
                 type="Quote"
-                text={`"${currentQuote.quote}"`}
-                title={currentQuote.author}
                 size="large"
               />
             ) 
