@@ -5,6 +5,10 @@ import Card from './Card.jsx';
 
 /* assets */
 import picture from './assets/placeholder.png';
+import albert from './assets/albert.jpg';
+import tzu from './assets/tzu.jpg';
+import shakespeare from './assets/shakespeare.jpg';
+import twain from './assets/twain.jpg';
 import { CurrentQuotesContext } from "./CurrentQuotesContext.jsx";
 
 export default function App() {
@@ -43,10 +47,10 @@ export default function App() {
       <div className={styles.recommended}>
         <h2 className={styles.sectionLabel}>RECOMMENDED</h2>
         <div className={styles.categoryContainer}>
-          <Card image={picture} text="" type="image" title="Albert Einstein" size = "small" isClickable = {!loading} name="einstein"/>
-          <Card image={picture} text="" type="image" title="Lao Tzu" size = "small" isClickable = {!loading} name="tzu"/>
-          <Card image={picture} text="" type="image" title="William Shakespeare" size = "small" isClickable = {!loading} name="shakespeare"/>
-          <Card image={picture} text="" type="image" title="Mark Twain" size = "small" isClickable = {!loading} name="twain"/>
+          <Card image={albert} text="" type="image" title="Albert Einstein" size = "small" isClickable = {!loading} name="einstein"/>
+          <Card image={tzu} text="" type="image" title="Lao Tzu" size = "small" isClickable = {!loading} name="tzu"/>
+          <Card image={shakespeare} text="" type="image" title="William Shakespeare" size = "small" isClickable = {!loading} name="shakespeare"/>
+          <Card image={twain} text="" type="image" title="Mark Twain" size = "small" isClickable = {!loading} name="twain"/>
         </div>
       </div>
 
