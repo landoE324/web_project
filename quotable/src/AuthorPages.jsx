@@ -66,19 +66,20 @@ export default function QuotesPage() {
       </button>
 
       <div className={`${styles.cardContainer} ${animating ? styles.shuffle : ""}`}>
-          
-          {currentArray && currentArray.length > 0 ? (
-              <Card
-                image = {picture}
-                type="Quote"
-                size="large"
-              />
-            ) 
-            : 
-            (
-              <p>Loading...</p>
-            )}
+        {currentArray && currentArray.length > 0 && currentArray[currentIndex] ? (
+          <Card
+            key={currentIndex} // ensures React fully re-renders on index change
+            type="quote"
+            size="large"
+            text={currentArray[currentIndex].quote}
+            title={currentArray[currentIndex].author}
+          />
+        ) : (
+          <p>Loading...</p>
+        )}
       </div>
+
+
 
       <button className = {styles.arrow} onClick={handleNext}>
         <img src = {arrow} />

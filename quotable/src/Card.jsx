@@ -20,7 +20,10 @@ function Card(props) {
   ? famousFolders[props.name.toLowerCase()] || []
   : [];
 
-    if (props.type !== "image") {
+      console.log("props.name:", props.name);
+      console.log("folder:", folder);
+
+  if (props.type !== "image") {
   console.log("Quotes card render:", {
     propsName: props.name,
     currentArray,
@@ -29,18 +32,13 @@ function Card(props) {
   });
 }
 
-  const displayText = props.text 
-  ?? (loading ? "Loading..." : currentQuote?.quote ?? "No quote available");
-
-  const displayTitle = props.title 
-  ?? (loading ? "Loading..." : currentQuote?.author ?? "Unknown Author");
+  const displayText = props.text ?? "";
+  const displayTitle = props.title ?? "Unknown Author";
 
   const navigate = useNavigate();
 
   const openContent = () => {
 
-    console.log(`Clicked card: ${props.name}`);
-    console.log("Folder contents:", folder);
     console.log("isClickable:", props.isClickable, "folder.length:", folder.length);
 
     if(!props.isClickable || !folder.length)
@@ -49,9 +47,10 @@ function Card(props) {
     }
     else
     {
+
       setCurrentArray(folder);
       setCurrentIndex(0);
-      navigate("/quotes")
+      setTimeout(() => navigate("/quotes"), 0); 
     }
   };
 

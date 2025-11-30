@@ -43,13 +43,18 @@ export function CurrentQuotesProvider({ children }) {
   const famousFolders = useMemo(() => {
   if (!allQuotes || allQuotes.length === 0) return {};
 
-    return {
-      einstein: allQuotes.filter(q => q.author === "Albert Einstein"),
-      tzu: allQuotes.filter(q => q.author === "Lao Tzu"),
-      twain: allQuotes.filter(q => q.author === "Mark Twain"),
-      shakespeare: allQuotes.filter(q => q.author === "William Shakespeare"),
-    };
-  }, [allQuotes]);
+  const normalize = q => ({
+    quote: q.quote || q.text || "", // use quote if exists, otherwise text
+    author: q.author || "Unknown Author"
+  });
+
+  return {
+    einstein: allQuotes.filter(q => q.author === "Albert Einstein").map(normalize),
+    tzu: allQuotes.filter(q => q.author === "Lao Tzu").map(normalize),
+    twain: allQuotes.filter(q => q.author === "Mark Twain").map(normalize),
+    shakespeare: allQuotes.filter(q => q.author === "William Shakespeare").map(normalize),
+  };
+}, [allQuotes]);
 
   console.log("Famous folders:", famousFolders);
   console.log("Shakespeare folder:", famousFolders.shakespeare);
