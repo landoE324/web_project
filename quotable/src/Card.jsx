@@ -3,10 +3,12 @@ import smallStyles from "./HomeStyle.module.css";
 import { useContext } from "react";
 import { CurrentQuotesContext } from "./CurrentQuotesContext.jsx";
 import { useNavigate } from "react-router-dom";
+import { RecentContext } from "./RecentContext.jsx";
 
 function Card(props) {
 
   const {
+        allQuotes,
         loading,
         currentArray,
         setCurrentArray,
@@ -14,6 +16,8 @@ function Card(props) {
         setCurrentIndex,
         currentQuote,
         famousFolders,} = useContext(CurrentQuotesContext);
+
+  const { addRecent } = useContext(RecentContext);
 
   const styles = props.size === 'large' ? largeStyles : smallStyles;
   const folder = props.name
@@ -37,22 +41,48 @@ function Card(props) {
 
   const navigate = useNavigate();
 
-  const openContent = () => {
+  
+const openContent = () => {
+  const author = props.title;
+  if (!author) return;
 
-    console.log("isClickable:", props.isClickable, "folder.length:", folder.length);
+  // 1. Try to get a predefined folder
+  const folderKey = author.toLowerCase().replaceAll(" ", "");
+  let quotesArray = famousFolders[folderKey] || [];
 
-    if(!props.isClickable || !folder.length)
-    {
-      return;
-    }
-    else
-    {
+  // 2. If NOT in famousFolders → dynamically build it
+  if (quotesArray.length === 0) {
+    quotesArray = allQuotes
+      .filter(q => q.author === author)
+      .map(q => ({
+        quote: q.text || q.quote,
+        author: q.author
+      }));
+  }
 
-      setCurrentArray(folder);
-      setCurrentIndex(0);
-      setTimeout(() => navigate("/quotes"), 0); 
-    }
-  };
+  if (quotesArray.length === 0) return; // fail-safe
+
+  // 3. Add RECENT entry
+  addRecent({
+  name: props.name || author,
+  title: author,
+  image: props.image || "/placeholder.png",   // <-- fallback ONLY if missing
+  });
+
+  // 4. Pick index (first quote, or the exact quote clicked if available)
+  let index = 0;
+  if (props.text) {
+    index = quotesArray.findIndex(q => q.quote === props.text);
+    if (index === -1) index = 0;
+  }
+
+  // 5. Save to context
+  setCurrentArray(quotesArray);
+  setCurrentIndex(index);
+
+  // 6. Navigate
+  navigate("/quotes");
+};
 
   return (
     <div 

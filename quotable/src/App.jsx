@@ -11,6 +11,7 @@ import tzu from './assets/tzu.jpg';
 import shakespeare from './assets/shakespeare.jpg';
 import twain from './assets/twain.jpg';
 import { CurrentQuotesContext } from "./CurrentQuotesContext.jsx";
+import { RecentContext } from "./RecentContext.jsx";
 
 
 export default function App() {
@@ -18,6 +19,8 @@ export default function App() {
   const navigate = useNavigate();
 
   const {allQuotes, loading, setCurrentArray, setCurrentIndex} = useContext(CurrentQuotesContext);
+
+  const {recent, addRecent} = useContext(RecentContext);
 
   console.log("allQuotes:", allQuotes);
 
@@ -89,6 +92,12 @@ export default function App() {
                     item => item.quote === (q.text || q.quote)
                   );
 
+                  addRecent({
+                  name: q.author.toLowerCase(),   // same as folder name
+                  title: q.author,
+                  image: picture,                    // search results don't have images
+                  });
+
                   setCurrentArray(authorQuotes);
                   setCurrentIndex(index >= 0 ? index : 0);
 
@@ -118,12 +127,23 @@ export default function App() {
       {/* RECENT CARDS */}
       <div className={styles.Recent}>
         <h2 className={styles.sectionLabel}>RECENT</h2>
-        <div className={styles.recentContainer}>
-          <Card image={picture} text="Placeholder" type="image" title="Placeholder" size = "small" isClickable = {true}/>
-          <Card image={picture} text="Placeholder" type="image" title="Placeholder" size = "small" isClickable = {true}/>
-          <Card image={picture} text="Placeholder" type="image" title="Placeholder" size = "small" isClickable = {true}/>
-          <Card image={picture} text="Placeholder" type="image" title="Placeholder" size = "small" isClickable = {true}/>
-        </div>
+         <div className={styles.recentContainer}>
+            {recent.length === 0 ? (
+              <p>No recent cards.</p>
+            ) : (
+              recent.map((card, i) => (
+                <Card
+                  key={i}
+                  image={card.image}
+                  title={card.title}
+                  name={card.name}
+                  type="image"
+                  size="small"
+                  isClickable={true}
+                />
+              ))
+            )}
+          </div>
       </div>
     </div>
   );
