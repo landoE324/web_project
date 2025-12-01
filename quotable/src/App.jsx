@@ -1,61 +1,150 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import "./style.css";
-import Card from './Card.jsx'
+import styles from "./HomeStyle.module.css"; // <-- module import
+import Card from './Card.jsx';
+import { useNavigate } from "react-router-dom";
 
-{/*assets*/}
-import picture from './assets/placeholder.png'
+/* assets */
+import picture from './assets/placeholder.png';
+import albert from './assets/albert.jpg';
+import tzu from './assets/tzu.jpg';
+import shakespeare from './assets/shakespeare.jpg';
+import twain from './assets/twain.jpg';
+import { CurrentQuotesContext } from "./CurrentQuotesContext.jsx";
+import { RecentContext } from "./RecentContext.jsx";
+
 
 export default function App() {
-return (
-<div className="app-container">
-{/* Dropdown Menu (Top Left) */}
-<div className="nav-dropdown">
-<details>
-<summary className="menu-title">Menu</summary>
-<ul className="menu-list">
-<li><a href="#">Home</a></li>
-<li><a href="#">About</a></li>
-<li><a href="#">Folders</a></li>
-</ul>
-</details>
-</div>
 
-<div className="logo-container">
-<img
-    src = "/logo.png"
-    alt = "logo"
-    className = "logo-img"
-/>
+  const navigate = useNavigate();
 
+  const {allQuotes, loading, setCurrentArray, setCurrentIndex} = useContext(CurrentQuotesContext);
 
-{/* Search Bar (Top Middle) */}
-<div className="search-bar">
-<input type="text" placeholder="Search..." />
-</div>
-</div>
+  const {recent, addRecent} = useContext(RecentContext);
 
+  console.log("allQuotes:", allQuotes);
 
-{/* Cards */}
-<div className = "recommended">
-    <h2 className = "section-label">RECOMMENDED</h2>
-<div className = "category-container">
-<Card image = {picture}></Card>
-<Card image = {picture}></Card>
-<Card image = {picture}></Card>
-<Card image = {picture}></Card>
-</div>
-</div>
+  const [query, setQuery] = useState("");
 
-<div className = "Recent">
-    <h2 className = "section-label">RECENT</h2>
-<div className = "recent-container">
-<Card image = {picture}></Card>
-<Card image = {picture}></Card>
-<Card image = {picture}></Card>
-<Card image = {picture}></Card>    
-</div>
-</div>
-</div>
-);
+  // Filter quotes as user types
+  const results =
+  query.length > 0 && Array.isArray(allQuotes)
+    ? allQuotes.filter(q =>
+        (q.text || q.quote || "").toLowerCase().includes(query.toLowerCase()) ||
+        (q.author || "").toLowerCase().includes(query.toLowerCase())
+      )
+    : [];
+
+  
+  return (
+    <div className={styles.appContainer}>
+      {/* Dropdown Menu (Top Left) */}
+      <div className={styles.navDropdown}>
+        <details>
+          <summary className={styles.menuTitle}>Menu</summary>
+          <ul className={styles.menuList}>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/">About</Link></li>
+            <li><Link to="/folders">Folders</Link></li>
+          </ul>
+        </details>
+      </div>
+
+      {/* Top Right Logo */}
+      <div className={styles.logoContainer}>
+        <img
+          src="/logo.png"
+          alt="logo"
+          className={styles.logoImg}
+          onClick={() => navigate("/")} // your action here
+          style={{ cursor: "pointer" }} // shows hand cursor on hover
+        />
+
+        {/* Search Bar (Top Middle) */}
+        <div className={styles.searchBar}>
+          <input
+            type="text"
+            placeholder="Search quotes or authors..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+        </div>
+      
+
+      {query.length > 0 && (
+        <div className={styles.searchResults}>
+          {results.length === 0 ? (
+            <div className={styles.noResults}>No results found</div>
+          ) : (
+            results.slice(0, 8).map((q, i) => (
+              <div
+                key={i}
+                className={styles.searchItem}
+                onClick={() => {
+                  const authorQuotes = allQuotes
+                    .filter(x => x.author === q.author)
+                    .map(x => ({
+                      quote: x.text || x.quote,
+                      author: x.author
+                    }));
+
+                  const index = authorQuotes.findIndex(
+                    item => item.quote === (q.text || q.quote)
+                  );
+
+                  addRecent({
+                  name: q.author.toLowerCase(),   // same as folder name
+                  title: q.author,
+                  image: picture,                    // search results don't have images
+                  });
+
+                  setCurrentArray(authorQuotes);
+                  setCurrentIndex(index >= 0 ? index : 0);
+
+                  navigate("/quotes");
+                  setQuery("");
+                }}
+              >
+                <strong>{q.author}</strong> — {q.text || q.quote}
+              </div>
+            ))
+          )}
+        </div>
+      )}
+      </div>
+
+      {/* RECOMMENDED CARDS */}
+      <div className={styles.recommended}>
+        <h2 className={styles.sectionLabel}>RECOMMENDED</h2>
+        <div className={styles.categoryContainer}>
+          <Card image={albert} text="" type="image" title="Albert Einstein" size = "small" isClickable = {!loading} name="einstein"/>
+          <Card image={tzu} text="" type="image" title="Lao Tzu" size = "small" isClickable = {!loading} name="tzu"/>
+          <Card image={shakespeare} text="" type="image" title="William Shakespeare" size = "small" isClickable = {!loading} name="shakespeare"/>
+          <Card image={twain} text="" type="image" title="Mark Twain" size = "small" isClickable = {!loading} name="twain"/>
+        </div>
+      </div>
+
+      {/* RECENT CARDS */}
+      <div className={styles.Recent}>
+        <h2 className={styles.sectionLabel}>RECENT</h2>
+         <div className={styles.recentContainer}>
+            {recent.length === 0 ? (
+              <p>No recent cards.</p>
+            ) : (
+              recent.map((card, i) => (
+                <Card
+                  key={i}
+                  image={card.image}
+                  title={card.title}
+                  name={card.name}
+                  type="image"
+                  size="small"
+                  isClickable={true}
+                />
+              ))
+            )}
+          </div>
+      </div>
+    </div>
+  );
 }

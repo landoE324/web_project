@@ -1,0 +1,220 @@
+.appContainer {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 100px;   /* NEW — pushes cards below top bar */
+  background-color: rgba(245, 238, 224);
+  position: relative;   /* CHANGED from fixed */
+}
+
+
+/* -------- TOP LEFT MENU -------- */
+
+.menuTitle {
+  color: rgba(23, 60, 87);
+  font-size: 40px;
+}
+
+.navDropdown {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 10;
+}
+
+summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+.menuList {
+  margin-top: 8px;
+  padding: 0;
+  list-style: none;
+  background: #f2f2f2;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+}
+
+.menuList li a {
+  display: block;
+  padding: 10px 14px;
+  text-decoration: none;
+  color: black;
+}
+
+.menuList li a:hover {
+  background: #e0e0e0;
+}
+
+/* -------- TOP RIGHT LOGO -------- */
+
+.logoContainer {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 10;
+}
+
+.logoImg {
+  width: 120px;
+  height: auto;
+  cursor: pointer;
+}
+
+/* -------- SEARCH BAR (CENTER) -------- */
+
+.searchBar input {
+  width: 280px;
+  padding: 10px 14px;
+  font-size: 15px;
+
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color: rgba(245, 238, 224);
+}
+
+/* -------- CARDS -------- */
+
+
+.card{
+  width: 500px;                 /* controls total card width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.square{
+  width: 100%;
+  aspect-ratio: 1 / 1;          /* perfect square */
+  overflow: hidden;             /* image stays inside */
+  border: 1px solid rgba(23, 60, 87);
+  border-radius: 30px;
+  box-shadow: 5px 5px 5px rgba(70, 69, 69, 0.182);
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.square:hover {
+  transform: translateY(-5px); /* lifts the card */
+  box-shadow: 8px 8px 15px rgba(70, 69, 69, 0.3); /* stronger shadow */
+}
+
+
+.card .card-image{
+  width: 90%;
+  height: auto;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.cardText {
+  padding: 20px;
+  font-size: 20px;
+  color: rgba(23, 60, 87);
+  text-align: center;
+}
+
+
+.card .card-title{
+  font-family: Arial, sans-serif;
+  margin: 0;
+  color:  rgba(23, 60, 87);
+  font-size: 14px;
+  padding-top: 60px;
+}
+
+.categoryContainer{
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 30px;
+}
+
+.recentContainer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 20px;
+  gap: 30px;
+}
+
+.sectionLabel{
+    color:  rgba(23, 60, 87);
+    margin-left: 20px;
+    border-left: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+}
+
+.Recent {
+  margin-top: 100px;
+}
+
+/* -------- ARROWS -------- */
+
+.cardWrapper {
+  display: flex;
+  align-items: center;   /* vertically centers arrows to the cards */
+  justify-content: center;
+  gap: 20px;
+  margin-top: 100px;
+}
+
+.arrow {
+  background: none;
+  border: none;
+  font-size: 40px;
+  color: rgba(23, 60, 87);
+  cursor: pointer;
+  padding: 5px 10px;
+  margin-top: 350px;
+  transition: transform 0.2s ease;
+}
+
+.arrow img {
+  width: 100px;
+  height: auto;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+}
+
+.arrow:hover {
+  transform: scale(1.2);
+}
+
+/* -------- SHUFFLE ANIMATION -------- */
+
+.cardContainer {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.cardContainer.shuffle {
+  transform: translateX(40px) rotate(3deg);
+  opacity: 0;
+}
+
+
