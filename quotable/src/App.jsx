@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./HomeStyle.module.css"; // <-- module import
 import Card from './Card.jsx';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; 
 
 /* assets */
 import picture from './assets/placeholder.png';
@@ -41,10 +41,16 @@ export default function App() {
       {/* Dropdown Menu (Top Left) */}
       <div className={styles.navDropdown}>
         <details>
-          <summary className={styles.menuTitle}>Menu</summary>
+          <summary className={styles.menuTitle}>
+          <div className={styles.bars}>
+          <span></span>
+          <span></span>
+          <span></span>
+          </div>
+          </summary>
           <ul className={styles.menuList}>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/">About</Link></li>
+            <li><Link to="/about">About</Link></li>
             <li><Link to="/folders">Folders</Link></li>
           </ul>
         </details>

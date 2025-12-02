@@ -33,10 +33,16 @@ export default function FolderPage() {
       {/* Dropdown Menu (Top Left) */}
       <div className={styles.navDropdown}>
         <details>
-          <summary className={styles.menuTitle}>Menu</summary>
+          <summary className={styles.menuTitle}>
+          <div className={styles.bars}>
+              <span></span>
+              <span></span>
+              <span></span>
+          </div>
+          </summary>
           <ul className={styles.menuList}>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/">About</Link></li>
+            <li><Link to="/about">About</Link></li>
             <li><Link to="/folders">Folders</Link></li>
           </ul>
         </details>

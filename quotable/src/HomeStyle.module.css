@@ -187,3 +187,17 @@ summary::-webkit-details-marker {
 .Recent {
   margin-top: 100px;
 }
+
+.bars {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.bars span {
+  width: 24px;
+  height: 3px;
+  background: black;
+  border-radius: 2px;
+}
