@@ -30,18 +30,24 @@ export default function QuotesPage() {
   };
   
   return (
-    <div className= {styles.appContainer}>
-      {/* Dropdown Menu (Top Left) */}
-      <div className= {styles.navDropdown}>
-        <details>
-          <summary className= {styles.menuTitle}>Menu</summary>
-          <ul className={styles.menuList}>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/">About</Link></li>
-            <li><Link to="/folders">Folders</Link></li>
-          </ul>
-        </details>
-      </div>
+    <div className={styles.appContainer}>
+          {/* Dropdown Menu (Top Left) */}
+          <div className={styles.navDropdown}>
+            <details>
+              <summary className={styles.menuTitle}>
+              <div className={styles.bars}>
+              <span></span>
+              <span></span>
+              <span></span>
+              </div>
+              </summary>
+              <ul className={styles.menuList}>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/folders">Folders</Link></li>
+              </ul>
+            </details>
+    </div>
 
       {/* Top Right Logo */}
       <div className= {styles.logoContainer}>
