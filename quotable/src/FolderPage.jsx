@@ -15,7 +15,7 @@ export default function FolderPage() {
 
   const { allQuotes, loading, setCurrentArray, setCurrentIndex } = useContext(CurrentQuotesContext);
   const { recent, addRecent } = useContext(RecentContext);
-  const { folders } = useContext(FolderContext); // get all user-created folders
+  const { folders } = useContext(FolderContext); 
 
   const [query, setQuery] = useState("");
 

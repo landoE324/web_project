@@ -18,7 +18,7 @@ html, body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: stretch;          /* NEW - removes centering */
+  align-items: stretch;
   padding-top: 200px;
   position: relative;
 }

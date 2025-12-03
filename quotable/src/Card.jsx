@@ -39,13 +39,12 @@ function Card(props) {
 
     let quotesArray = [];
 
-    // 1️⃣ Famous folders
     const folderKey = authorOrFolder.toLowerCase().replaceAll(" ", "");
     if (famousFolders[folderKey]) {
       console.log("Using famous folder:", folderKey);
       quotesArray = famousFolders[folderKey];
     } 
-    // 2️⃣ User-created folders (case-insensitive)
+
     else if (props.isUserFolder) {
       console.log("This is a user folder card. Searching user folders...");
       const folder = folders.find(f => f.name.toLowerCase() === props.name.toLowerCase());
@@ -60,7 +59,7 @@ function Card(props) {
         console.log("User folder not found:", props.name);
       }
     } 
-    // 3️⃣ Fallback to allQuotes by author
+
     else {
       console.log("Searching allQuotes for author:", authorOrFolder);
       quotesArray = allQuotes
