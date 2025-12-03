@@ -77,6 +77,8 @@ export default function App() {
         </div>
       
 
+
+      {/* Search Bar Results */}
       {query.length > 0 && (
         <div className={styles.searchResults}>
           {results.length === 0 ? (

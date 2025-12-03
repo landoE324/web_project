@@ -63,7 +63,7 @@ export default function QuotesPage() {
         <input type="text" placeholder="Search..." />
       </div>
 
-      {/* ---- SINGLE CENTERED CARD ---- */}
+      {/* ---- SINGLE CARD ---- */}
 
       <div className = {styles.cardWrapper}>
 
@@ -74,7 +74,7 @@ export default function QuotesPage() {
       <div className={`${styles.cardContainer} ${animating ? styles.shuffle : ""}`}>
         {currentArray && currentArray.length > 0 && currentArray[currentIndex] ? (
           <Card
-            key={currentIndex} // ensures React fully re-renders on index change
+            key={currentIndex} 
             type="quote"
             size="large"
             text={currentArray[currentIndex].quote}
@@ -84,8 +84,6 @@ export default function QuotesPage() {
           <p>Loading...</p>
         )}
       </div>
-
-
 
       <button className = {styles.arrow} onClick={handleNext}>
         <img src = {arrow} />
